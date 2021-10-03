@@ -1,11 +1,11 @@
 {
-  "outFile": "/home/davidk/Desktop/yoga.xml",
+  "outFile": "yoga",
   "resolution": null,
   "frameRate": 30,
   "layers": [
     [
       {
-        "sourceFile": "/home/davidk/code/python/JC-render/JC-examples/yoga.mp4",
+        "sourceFile": "../JC-examples/yoga.mp4",
         "timelineStart": 0,
         "speed": {
           "silent": null,
