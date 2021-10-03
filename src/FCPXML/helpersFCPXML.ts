@@ -1,7 +1,8 @@
+import {baseXMLBUilder} from "../XML/common";
+
 type Second = `${number}s`;
 
-export class fcpxmlBuilder {
-    private _data: string[] = [];
+export class fcpxmlBuilder extends baseXMLBUilder {
     private IDs: {"format": string[], "asset": string[]} = {"format": [], "asset": []};
     public buildContext(l: () => void): void {
         this._data.push("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
@@ -54,28 +55,6 @@ export class fcpxmlBuilder {
         });
 
         return this;
-    }
-
-
-    get data(): string {
-        return this._data.join('\n');
-    }
-
-    private putTag(name: string, attr: {[key: string]: string},
-        contents?: () => void) {
-        const attrStr =
-            Object.entries(attr)
-                .map(([key, value]) => {return `${key}="${value}"`;})
-                .join(' ');
-
-        if (!contents) {
-            this._data.push(`<${name} ${attrStr}/>`);
-            return;
-        }
-
-        this._data.push(`<${name} ${attrStr}>`);
-        contents();
-        this._data.push(`</${name}>`);
     }
 
     private putSeconds(seconds: number): Second {return `${seconds}s`;}
