@@ -7,13 +7,10 @@ export abstract class Generator {
     protected frameRate: number;
     protected clipName: string;
 
-
     constructor(project: Project) {
         this.project = project;
         this.layer = this.ensureSingleLayer(this.project);
         this.cuts = this.fillInGaps(this.ensureCuts(this.layer));
-        //this.layer.cuts = this.cuts;
-        //this.project.layers![0]![0] = this.layer; // we already know it isn't null
         this.frameRate = this.project.frameRate;
         this.clipName = this.layer.sourceFile;
     }
