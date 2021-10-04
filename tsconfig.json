@@ -26,5 +26,13 @@
       "./src/declarations"
     ],
     "baseUrl": "."
+  },
+  "exclude": [
+    "node_modules",
+    "test",
+    "dist"
+  ],
+  "ts-node": {
+    "files": true
   }
 }
