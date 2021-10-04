@@ -16,12 +16,15 @@ This repo contains various generators for external project
 ### Dependencies
 * node
 * yarn
-### Building
+### Setup
+* Clone the project **recursively** and **with ssh**
+    * `git clone git@github.com:JumpCutter/JC-ProjectExportAPI --recursive`
 * Install yarn if you don't have it
     * `npm i yarn -g`
 * Build
     * `yarn build`
-* Run tests
+### Tests
+* Run tests (this does not require `yarn build`
     * `yarn test`
 
 ## Testing
