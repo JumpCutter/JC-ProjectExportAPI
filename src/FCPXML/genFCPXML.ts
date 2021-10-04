@@ -3,11 +3,10 @@ import {fcpxmlBuilder} from "./helpersFCPXML";
 import path from "path";
 
 
-export default class FCPXML extends Generator {
+export class FCPXML extends Generator {
     generate(): string {
         const builder = new fcpxmlBuilder();
         builder.buildContext(() => {
-
             builder.resourcesBuildContext(1 / this.frameRate, () => {
                 builder.putAsset(this.clipName, this.cuts[this.cuts.length - 1].end);
             });

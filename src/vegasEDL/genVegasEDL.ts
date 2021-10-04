@@ -1,7 +1,7 @@
 import {Generator} from "../baseGenerator";
 import {vegasEDLBuilder} from "./helpersVegasEDL";
 
-export default class vegasEDL extends Generator {
+export class VegasEDL extends Generator {
 
     // the main thing
     generate() {

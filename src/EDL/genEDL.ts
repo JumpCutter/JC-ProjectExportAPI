@@ -2,10 +2,8 @@ import {Generator} from "../baseGenerator";
 import EDL from "edl_composer"; // yes, there are no TS declarations
 
 import {Cut} from "../project";
-import path from "path";
 
-
-export default class ResolevEdl extends Generator {
+export class ResolveEDL extends Generator {
     generate() {
         const edlIr = new EDL({
             "title": "JumpCutterExport",
