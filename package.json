@@ -7,8 +7,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "cp": "node .github/cp.js",
+    "mkdir": "node .github/mkdir.js",
     "build": "yarn run tsc",
-    "dev": "yarn build && node ./dist/test.js",
+    "dist": "yarn build && yarn cp ./src/ProjectExport.d.ts dist",
     "test": "mocha"
   },
   "dependencies": {
