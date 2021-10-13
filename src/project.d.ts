@@ -1,6 +1,6 @@
 export interface Project {
     outFile: string;
-    resolution?: null;
+    resolution: string | null;
     frameRate: number;
     layers?: Layers | null;
 }
