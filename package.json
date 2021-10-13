@@ -10,7 +10,7 @@
     "cp": "node .github/cp.js",
     "mkdir": "node .github/mkdir.js",
     "build": "yarn tsc",
-    "release": "yarn build && yarn cp ./src/project.d.ts dist && yarn cp ./src/index.d.ts dist",
+    "release": "yarn build && yarn cp ./src/project.d.ts package/dist && yarn cp ./src/index.d.ts package/dist && yarn cp ./package.json package/",
     "test": "mocha"
   },
   "repository": {
