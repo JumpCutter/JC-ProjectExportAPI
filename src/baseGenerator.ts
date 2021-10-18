@@ -1,4 +1,4 @@
-import {Project, Layer, Cuts} from "./project";
+import {Project, Layer, Cuts, Options} from "./project";
 export abstract class Generator {
 
     private project: Project;
@@ -6,11 +6,18 @@ export abstract class Generator {
     protected cuts: Cuts;
     protected frameRate: number;
     protected clipName: string;
+    protected options: Options;
 
-    constructor(project: Project) {
+
+    constructor(project: Project, options: Options) {
         this.project = project;
+        this.options = options;
         this.layer = this.ensureSingleLayer(this.project);
-        this.cuts = this.fillInGaps(this.ensureCuts(this.layer));
+        if (this.options.keepSilent) {
+            this.cuts = this.fillInGaps(this.ensureCuts(this.layer));
+        } else {
+            this.cuts = this.ensureCuts(this.layer);
+        }
         this.frameRate = this.project.frameRate;
         this.clipName = this.layer.sourceFile;
     }
