@@ -25,3 +25,8 @@ export interface Speed {
     silent?: null;
     sounded: number;
 }
+
+
+export interface Options{
+    keepSilent: boolean,
+}

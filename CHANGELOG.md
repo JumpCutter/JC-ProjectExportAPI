@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.0.4](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.3...v0.0.4) (2021-10-18)
+### Changes
+- __BREAKING__: Constructor of Generator now takes second parameter - an `Options` object
+- __added__: Options object
+- __added__: Option to keep or remove silent parts in export (has to be specified)
+
 ## [0.0.3](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.2...v0.0.3) (2021-10-18)
 ### Changes
 - __release__: Third time's the charm
