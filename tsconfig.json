@@ -17,7 +17,7 @@
     "allowJs": true,
     "jsx": "react",
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "./package/dist",
     "strict": true,
     "noImplicitAny": false,
     "esModuleInterop": true,
@@ -30,7 +30,7 @@
   "exclude": [
     "node_modules",
     "test",
-    "dist"
+    "package"
   ],
   "ts-node": {
     "files": true

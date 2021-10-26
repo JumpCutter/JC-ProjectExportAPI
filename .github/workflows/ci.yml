@@ -6,7 +6,10 @@ on:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
-  test:
+  build:
+    strategy:
+      fail-fast: true
+      max-parallel: 3
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,47 +29,10 @@ jobs:
           yarn install
 
       - name: Build
-        run: yarn release
-
-      - name: Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: ubuntu-latest
-          path: dist
-
-
-  build:
-    needs: test
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-      max-parallel: 3
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Read .nvmrc
-        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
-        id: nvm
-
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '${{ steps.nvm.outputs.NVMRC }}'
-
-      - name: Install
-        run: |
-          yarn install
-
-      - name: Build
-        if: startsWith(matrix.os, 'macos')
         run: |
           yarn release
 
       - name: Get Change
-        if: startsWith(matrix.os, 'ubuntu')
         id: changes
         run: |
           echo "# ${{ github.ref }}" > changes.txt
@@ -86,7 +52,6 @@ jobs:
           echo ::set-output name=log::$(cat changes.txt)
 
       - name: Upload change
-        if: startsWith(matrix.os, 'ubuntu')
         uses: actions/upload-artifact@v2
         with:
           name: changes
@@ -95,8 +60,8 @@ jobs:
       - name: Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.os }}
-          path: dist
+          name: package
+          path: package
 
   release:
     needs: build
@@ -118,14 +83,11 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          # body: ${{ steps.changes.outputs.log }}
           body_path: changes.txt
-          # body: ${{ needs.build.outputs.log }}
-          # echo ::set-env name=FOO::$(echo -n "hello world")
           draft: false
           prerelease: false
 
@@ -137,58 +99,24 @@ jobs:
   upload:
     needs: release
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-      max-parallel: 3
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: ${{ matrix.os }}
+          name: package
           path: ProjectExportAPI
 
       - name: list path
-        if: startsWith(matrix.os, 'windows')
-        run: dir ProjectExportAPI
+        run: ls -l ProjectExportAPI
 
       - name: Compress folder
-        if: startsWith(matrix.os, 'windows')
-        run: cd ProjectExportAPI && 7za a ../ProjectExportAPI.zip
+        run: tar -cvzf ProjectExportAPI.tar.gz ProjectExportAPI
 
-      - name: Compress folder
-        if: startsWith(matrix.os, 'windows') != true
-        run: zip -r ProjectExportAPI.zip ProjectExportAPI/*
-
-      - name: Upload Linux Asset
-        if: startsWith(matrix.os, 'ubuntu')
+      - name: Upload Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: ProjectExportAPI.zip
-          asset_name: ProjectExportAPI-linux.zip
-          asset_content_type: application/zip
-
-      - name: Upload Mac Asset
-        if: startsWith(matrix.os, 'macos')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: ProjectExportAPI.zip
-          asset_name: ProjectExportAPI-mac.zip
-          asset_content_type: application/zip
-
-      - name: Upload Windows Asset
-        if: startsWith(matrix.os, 'windows')
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ needs.release.outputs.upload_url }}
-          asset_path: ProjectExportAPI.zip
-          asset_name: ProjectExportAPI-windows.zip
+          asset_path: ProjectExportAPI.tar.gz
+          asset_name: ProjectExportAPI.tar.gz
           asset_content_type: application/zip
