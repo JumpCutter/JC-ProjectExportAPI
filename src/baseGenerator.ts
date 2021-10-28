@@ -49,7 +49,7 @@ export abstract class Generator {
 
     private fillInGaps(cuts: Cuts): Cuts {
         const newCuts: Cuts = [];
-        for (let i: number = 0; i < cuts.length; i++) {
+        for (let i = 0; i < cuts.length; i++) {
             newCuts.push(cuts[i]);
             if (i + 1 < cuts.length) {
                 newCuts.push({
@@ -62,4 +62,4 @@ export abstract class Generator {
     }
 
     abstract generate(): string;
-};
+}

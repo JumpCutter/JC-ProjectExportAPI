@@ -6,7 +6,7 @@ export class baseXMLBUilder {
         const attrStr =
             Object.entries(attr)
                 .map(([key, value]) => {return `${key}="${value}"`;})
-                .join(' ');
+                .join(" ");
 
         if (!contents) {
             this._data.push(`<${name} ${attrStr}/>`);
@@ -24,6 +24,6 @@ export class baseXMLBUilder {
     }
 
     public get data() {
-        return this._data.join('\n');
+        return this._data.join("\n");
     }
 }

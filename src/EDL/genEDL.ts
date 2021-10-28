@@ -15,7 +15,7 @@ export class ResolveEDL extends Generator {
                     "reelName": "N/A",
                     "clipName": this.clipName,
                     "fps": this.frameRate
-                }
+                };
             })
         });
         return edlIr.compose();

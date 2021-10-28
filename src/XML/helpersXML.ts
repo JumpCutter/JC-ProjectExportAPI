@@ -3,8 +3,8 @@ import path from "path";
 
 export class xmlBuilder extends baseXMLBUilder {
     private clipitemIDs: string[] = [];
-    private timeBase: number = -1;
-    private duration: string = "";
+    private timeBase = -1;
+    private duration = "";
     public buildContext(name: string, frameRate: number, duration: number, l: () => void) {
         this.timeBase = frameRate;
         this.duration = (frameRate * duration).toFixed(0);
@@ -28,7 +28,7 @@ export class xmlBuilder extends baseXMLBUilder {
                                 this.putTag("track", {}, () => {
                                     this.clipitemIDs.forEach((id) => {
                                         this.putTag("clipitem", {id});
-                                    })
+                                    });
                                 });
 
                             });
