@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.5](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.4...v0.0.5) (2021-10-28)
+### Changes
+- __fixed__: Could not import into Premiere Pro. Needs more testing but is now more likely to work.
+
 ## [0.0.4](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.3...v0.0.4) (2021-10-18)
 ### Changes
 - __BREAKING__: Constructor of Generator now takes second parameter - an `Options` object
