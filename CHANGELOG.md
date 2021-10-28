@@ -1,5 +1,10 @@
 # Change Log
 
+## [0.0.6](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.5...v0.0.6) (2021-10-28)
+### Changes
+- __fixed__: messed up tags on last release...
+- __fixed__: Could not import into Premiere Pro. Needs more testing but is now more likely to work.
+
 ## [0.0.5](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.4...v0.0.5) (2021-10-28)
 ### Changes
 - __fixed__: Could not import into Premiere Pro. Needs more testing but is now more likely to work.
