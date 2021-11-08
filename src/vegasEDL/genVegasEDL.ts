@@ -23,8 +23,8 @@ export class VegasEDL extends Generator {
                         .putStreamLength(cut.end - cut.start)
                         .putSecondDefualts();
                 });
-            })
-        })
+            });
+        });
         return builder.data;
     }
 }

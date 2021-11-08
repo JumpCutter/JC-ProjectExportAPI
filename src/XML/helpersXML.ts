@@ -39,7 +39,7 @@ export class xmlBuilder extends baseXMLBUilder {
                                 this.putTag("track", {}, () => {
                                     this.clipitemIDs.forEach((id) => {
                                         this.putTag("clipitem", {id});
-                                    })
+                                    });
                                 });
 
                             });

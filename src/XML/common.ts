@@ -29,6 +29,6 @@ export class baseXMLBUilder {
     }
 
     public get data() {
-        return this._data.join('\n');
+        return this._data.join("\n");
     }
 }

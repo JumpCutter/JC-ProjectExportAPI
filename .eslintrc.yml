@@ -4,7 +4,6 @@ env:
   node: true
 extends:
   - 'eslint:recommended'
-  - 'plugin:react/recommended'
   - 'plugin:@typescript-eslint/recommended'
 parser: '@typescript-eslint/parser'
 parserOptions:
@@ -13,12 +12,11 @@ parserOptions:
   ecmaVersion: 1
   sourceType: module
 plugins:
-  - react
   - '@typescript-eslint'
 rules:
   indent:
     - error
-    - 2
+    - 4
     - SwitchCase: 1
   linebreak-style:
     - error
@@ -61,7 +59,3 @@ rules:
     - off
   "@typescript-eslint/ban-types":
     - warn
-  "react/prop-types":
-    - off
-  "react/no-unescaped-entities":
-    - off

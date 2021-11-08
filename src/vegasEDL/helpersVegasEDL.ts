@@ -9,7 +9,7 @@ export class vegasEDLBuilder {
     public buildContextManager(l: () => void) {
         this._temp = [];
         l();
-        this._data.push(this._temp.join(';'));
+        this._data.push(this._temp.join(";"));
     }
 
     public putStartBuild(): vegasEDLBuilder {
@@ -185,7 +185,7 @@ export class vegasEDLBuilder {
     }
 
     get data() {
-        return this._data.join('\n');
+        return this._data.join("\n");
     }
 
     // booleans are expoected to be uppercase
