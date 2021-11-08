@@ -7,6 +7,7 @@ export abstract class Generator {
     protected frameRate: number;
     protected clipName: string;
     protected options: Options;
+    protected resolution: string | null;
 
 
     constructor(project: Project, options: Options) {
@@ -20,6 +21,7 @@ export abstract class Generator {
         }
         this.frameRate = this.project.frameRate;
         this.clipName = this.layer.sourceFile;
+        this.resolution = this.project.resolution;
     }
 
 
