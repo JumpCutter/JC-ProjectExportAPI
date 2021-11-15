@@ -8,7 +8,7 @@ export class XML extends Generator {
         const builder = new xmlBuilder();
         const [width, height] = (() => {
             const split = this.resolution?.split('x');
-            return split ? split.map(parseInt) : [null, null];
+            return split ? split.map(n=>parseInt(n)) : [null, null];
         })();
         builder.buildContext(path.parse(this.clipName).name, width, height, this.frameRate, this.cuts[this.cuts.length - 1].end, () => {
             this.cuts.forEach((cut) => {
