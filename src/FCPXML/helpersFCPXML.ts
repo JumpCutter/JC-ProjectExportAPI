@@ -22,7 +22,7 @@ export class fcpxmlBuilder extends baseXMLBUilder {
     }
     public projectBuildContext(name: string, duration: number, l: () => void): fcpxmlBuilder {
         this.putTag("project", {name, uid: ""}, () => {
-            this.putTag("sequence", {duration: this.putSeconds(duration)}, () => {
+            this.putTag("sequence", {duration: this.putSeconds(duration), format: this.getLastFormat()}, () => {
                 this.putTag("spine", {}, () => {
                     l();
                 });
@@ -34,14 +34,15 @@ export class fcpxmlBuilder extends baseXMLBUilder {
     public putAsset(name: string, duration: number): fcpxmlBuilder {
         this.putTag("asset", {
             name,
-            src: name,
-            format: this.IDs.format[this.IDs.format.length - 1].toString(),
+            format: this.getLastFormat(),
             id: this.genID("asset"),
             duration: this.putSeconds(duration),
             start: this.putSeconds(0),
             hasAudio: this.putBool(this.conf.hasAudio),
             hasVideo: this.putBool(this.conf.hasVideo),
-        });
+        }, () => this.putTag("media-rep", {
+            src: name,
+        }));
         return this;
     }
 
@@ -65,9 +66,10 @@ export class fcpxmlBuilder extends baseXMLBUilder {
         this.IDs[type].push(id);
         return id;
     }
+    private getLastFormat(): string {return this.IDs.format[this.IDs.format.length - 1].toString();}
 
     private readonly conf = {
-        "version": "1.9",
+        "version": "1.10",
         "hasAudio": true,
         "hasVideo": true
     } as const;
