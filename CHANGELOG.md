@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.0.9](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.6...v0.0.7) (2022-03-22)
+### Changes
+- __fixed__: fcpxml implementation now follows the apple provided DTD
+
 ## [0.0.7](https://github.com/JumpCutter/JC-ProjectExportAPI/compare/v0.0.6...v0.0.7) (2021-11-11)
 ### Changes
 - __fixed__: when resolution is supplied it should now be properly handled. (instead of setting height to NaN)
